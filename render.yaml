@@ -1,7 +1,7 @@
 services:
   - type: web
     name: your-app-backend
-    runtime: php
+    runtime: php-8.2  # Must specify exact PHP version
     repo: https://github.com/yourusername/your-repo.git
     plan: free
     region: oregon
@@ -11,10 +11,10 @@ services:
       php artisan route:cache
       php artisan view:cache
     startCommand: |
-      # Create database directory if it doesn't exist
-      mkdir -p /var/data
-      touch /var/data/database.sqlite
-      chmod 666 /var/data/database.sqlite
+      # Create database directory in tmp (writable on free tier)
+      mkdir -p /tmp/data
+      touch /tmp/data/database.sqlite
+      chmod 666 /tmp/data/database.sqlite
       
       # Run migrations
       php artisan migrate --force
@@ -34,8 +34,5 @@ services:
       - key: DB_CONNECTION
         value: sqlite
       - key: DB_DATABASE
-        value: /var/data/database.sqlite
-    disk:
-      name: sqlite-data
-      mountPath: /var/data
-      sizeGB: 1
+        value: /tmp/data/database.sqlite  # Use /tmp instead of /var
+        
