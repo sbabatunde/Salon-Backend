@@ -6,7 +6,8 @@ RUN apt-get update && apt-get install -y \
     zip unzip libzip-dev libsqlite3-dev
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo pdo_sqlite mbstring exif pcntl bcmath gd zip
+# ✅ Add pdo_pgsql
+RUN docker-php-ext-install pdo pdo_sqlite pdo_pgsql pgsql mbstring exif pcntl bcmath gd zip
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
