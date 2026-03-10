@@ -14,13 +14,13 @@ class AccountsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('accounts')->delete();
-        
-        \DB::table('accounts')->insert(array (
-            0 => 
-            array (
+
+        \DB::table('accounts')->insert(array(
+            0 =>
+            array(
                 'id' => 1,
                 'client_id' => 1,
                 'amount_paid' => 56000,
@@ -31,11 +31,9 @@ class AccountsTableSeeder extends Seeder
                 'notes' => 'Good client',
                 'created_at' => '2026-01-09 14:46:39',
                 'updated_at' => '2026-01-09 14:46:39',
-                'total_cost' => 61000,
-                'profit' => -5000,
+                // 'total_cost' => 61000,
+                // 'profit' => -5000,
             ),
         ));
-        
-        
     }
 }
