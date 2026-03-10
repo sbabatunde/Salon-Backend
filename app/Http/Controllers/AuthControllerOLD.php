@@ -19,27 +19,23 @@ class AuthController extends Controller
             return response()->json(['message' => 'Invalid login details'], 401);
         }
 
-        $user = Auth::user();
+        $request->session()->regenerate();
 
-        // Delete old tokens & create new one
-        $user->tokens()->delete();
-        $token = $user->createToken('auth_token')->plainTextToken;
-
-        return response()->json([
-            'message' => 'Logged in successfully',
-            'token' => $token,
-            'user' => $user,
-        ]);
+        return response()->json(['message' => 'Logged in successfully']);
     }
 
     public function user(Request $request)
     {
-        return response()->json($request->user());
+        // return $request->user();
+        $user = Auth::user();
+        return response()->json($user);
     }
 
     public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
+        Auth::guard('web')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
         return response()->json(['message' => 'Logged out']);
     }

@@ -20,7 +20,8 @@ Route::middleware('api')->group(function () {
   // Route::post('/login', [AuthController::class, 'login']);
   // Route::post('/register', [AuthController::class, 'register']);
   // Route::post('/logout', [AuthController::class, 'logout']);
-  Route::get('/user', [AuthController::class, 'user']);
+  // Route::get('/user', [AuthController::class, 'user']);
+  // Public routes
 
 
   // Appointments Booking Routes 
@@ -137,6 +138,16 @@ Route::middleware('api')->group(function () {
     Route::get('fetch', [Settings::class, 'fetchBusinessDetails'])->name('business.fetch');
   });
 });
+
+
+Route::post('/login', [AuthController::class, 'login']);
+
+// Protected routes
+Route::middleware('auth:sanctum')->group(function () {
+  Route::post('/logout', [AuthController::class, 'logout']);
+  Route::get('/user', [AuthController::class, 'user']);
+});
+
 
 Route::get('/health', function () {
   return response()->json([

@@ -14,10 +14,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
 });
-Route::middleware(['web'])->group(function () {
-    Route::post('/login', [AuthController::class, 'login']);
-    Route::post('/logout', [AuthController::class, 'logout']);
-});
+// Route::middleware(['web'])->group(function () {
+//     Route::post('/login', [AuthController::class, 'login']);
+//     Route::post('/logout', [AuthController::class, 'logout']);
+// });
+
 Route::get('/test-email', function () {
     return view('emails.test-ticket');
 });
