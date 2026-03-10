@@ -1,12 +1,7 @@
 services:
   - type: web
-    name: Salon Backend
-    runtime: 
-      name: php
-      version: 8.2  # This is the correct format for specifying PHP version
-    repo: https://github.com/sbabatunde/Salon-Backend
-    plan: free
-    region: oregon
+    name: salon-backend
+    env: php
     buildCommand: |
       composer install --no-dev
       cp .env.example .env
