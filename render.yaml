@@ -2,18 +2,22 @@ services:
   - type: web
     name: salon-backend
     env: docker
-    repo: https://github.com/sbabatunde/Salon-Backend
     plan: free
     region: oregon
     dockerfilePath: ./Dockerfile
+    # This disk persists your SQLite database across restarts
+    disk:
+      name: sqlite-storage
+      mountPath: /var/www/html/storage/app
+      sizeGB: 1
     envVars:
       - key: APP_ENV
         value: production
       - key: APP_DEBUG
         value: false
-      - key: APP_KEY
-        generateValue: true
       - key: DB_CONNECTION
         value: sqlite
       - key: DB_DATABASE
         value: /var/www/html/storage/app/precious_hairmpire.sqlite
+      - key: LOG_CHANNEL
+        value: stderr
