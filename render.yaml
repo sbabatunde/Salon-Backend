@@ -2,7 +2,7 @@ services:
   - type: web
     name: your-app-backend
     runtime: php  # Just 'php', not 'php-8.2'
-    repo: https://github.com/yourusername/your-repo.git
+    repo: https://github.com/sbabatunde/Salon-Backend
     plan: free
     region: oregon
     buildCommand: |
