@@ -32,7 +32,7 @@ RUN sed -i 's|/var/www/html|/var/www/html/public|g' \
 RUN a2enmod rewrite
 
 # Setup SQLite directory
-RUN mkdir -p /var/data && touch /var/data/database.sqlite
+RUN mkdir -p /var/data && touch /var/data/precious_hairmpire.sqlite
 
 # Copy and enable entrypoint
 COPY docker-entrypoint.sh /usr/local/bin/
